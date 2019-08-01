@@ -1,0 +1,19 @@
+.container{
+    background-color: aquamarine;
+    width: 90%;
+    height: auto;
+    margin: auto;
+}
+
+.header {
+
+    background-color: orangered; 
+    padding: 7px 0px 7px 0px;
+
+
+}
+
+#login{
+    display: inline;
+    margin : 0% 0% 0% 61%;
+}
