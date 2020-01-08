@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { colorsDark } from 'styles/palette';
+import List from 'components/List';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Wrapper, Title } from './styles';
+
+class App extends Component {
+  render() {
+    return (
+<ThemeProvider theme={colorsDark}>
+  <div>
+    <Wrapper>
+      <Title>
+       Hacker News Reader
+      </Title>
+       <List />
+    </Wrapper>
+  </div>
+</ThemeProvider>
+    );
+  }
 }
 
 export default App;
+
+
+
+
+// import { connect } from 'react-redux';
+// import actions from 'store/story/actions';
+// import { hasMoreStoriesSelector } from 'store/story/selectors';
+// import App from './App';
+
+// const mapStateToProps = state => ({
+//   theme: state.app.theme,
+//   stories: state.story.stories,
+//   page: state.story.page,
+//   storyIds: state.story.storyIds,
+//   isFetching: state.story.isFetching,
+//   hasMoreStores: hasMoreStoriesSelector(state),
+// });
+
+// const mapDispatchToProps = dispatch => ({
+//   fetchStoriesFirstPage: () => dispatch(actions.fetchStoryIds()),
+//   fetchStories: ({ storyIds, page }) => dispatch(actions.fetchStories({ storyIds, page })),
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(App);

@@ -11,7 +11,7 @@ setGlobalStyles();
 const renderApp = () => {
   const initialState = {};
   const store = configureStore(initialState);
-  store.dispatch({ type: '@hnReader/@@INIT' });
+  store.dispatch({ type: '@hnClone/@@INIT' });
 
   if (process.env.NODE_ENV !== 'production') {
     console.log('Initial state ->');
