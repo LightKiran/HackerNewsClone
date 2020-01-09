@@ -1,58 +1,49 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { colorsDark } from 'styles/palette';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import List from 'components/List';
+import Loader from 'components/Loader';
+import { colorsDark } from 'styles/palette';
 
 import { Wrapper, Title } from './styles';
 
 class App extends Component {
-
- componentDidMount() {
+  
+  componentDidMount() {
     this.props.fetchStoriesFirstPage();
- }
+  }
+
+  fetchStories = () => {
+    const { storyIds, page, fetchStories, isFetching } = this.props;
+    if (!isFetching) {
+      fetchStories({ storyIds, page });
+    }
+  };
 
   render() {
-      const { stories } = this.props;
+    const { stories, hasMoreStores } = this.props;
     return (
-<ThemeProvider theme={colorsDark}>
-  <div>
-    <Wrapper>
-      <Title>
-       Hacker News Reader
-      </Title>
-       <List stories={stories} />
-    </Wrapper>
-  </div>
-</ThemeProvider>
+      <ThemeProvider theme={colorsDark}>
+        <div>
+          <Wrapper>
+            <Title>Hacker News Reader</Title>
+            <InfiniteScroll
+              dataLength={stories.length}
+              next={this.fetchStories}
+              hasMore={hasMoreStores}
+              loader={<Loader />}
+              style={{
+                height: '100%',
+                overflow: 'visible',
+              }}
+            >
+              <List stories={stories} />
+            </InfiniteScroll>
+          </Wrapper>
+        </div>
+      </ThemeProvider>
     );
   }
 }
 
 export default App;
-
-
-
-
-// import { connect } from 'react-redux';
-// import actions from 'store/story/actions';
-// import { hasMoreStoriesSelector } from 'store/story/selectors';
-// import App from './App';
-
-// const mapStateToProps = state => ({
-//   theme: state.app.theme,
-//   stories: state.story.stories,
-//   page: state.story.page,
-//   storyIds: state.story.storyIds,
-//   isFetching: state.story.isFetching,
-//   hasMoreStores: hasMoreStoriesSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   fetchStoriesFirstPage: () => dispatch(actions.fetchStoryIds()),
-//   fetchStories: ({ storyIds, page }) => dispatch(actions.fetchStories({ storyIds, page })),
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(App);
