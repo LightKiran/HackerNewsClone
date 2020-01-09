@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "moment": "^2.24.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-infinite-scroll-component": "^4.2.0",
@@ -14,7 +15,6 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "styled-components": "^3.4.9",
-    "timeago.js": "^4.0.0-beta.1",
     "url": "^0.11.0"
   },
   "scripts": {
